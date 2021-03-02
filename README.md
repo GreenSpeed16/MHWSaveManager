@@ -9,7 +9,7 @@ Set the world folder to the following path: <Your Steam Folder>\userdata\<9-digi
 After doing this, you will have access to all of the program's features.
 
 ## Buttons
-Set Main Save: Sets the currently loaded MHW save to your main save file. Requires confirmation so you don't accidentally overwrite your main save.
-Save Current: Allows you to save the currently loaded MHW save as a backup with a custom name.
-Load/Delete Selected: Loads or deletes the selected backup from the save list. Will ask if you'd like to re-backup your main save if switching off of it.
-Load Main Save: Loads the backup of your main save file
+Set Main Save: Sets the currently loaded MHW save to your main save file. Requires confirmation so you don't accidentally overwrite your main save.  
+Save Current: Allows you to save the currently loaded MHW save as a backup with a custom name.  
+Load/Delete Selected: Loads or deletes the selected backup from the save list. Will ask if you'd like to re-backup your main save if switching off of it.  
+Load Main Save: Loads the backup of your main save file.  
