@@ -6,7 +6,7 @@ I am not perfect and this program is early in development. Please backup your sa
 to a safe location before using this.
 
 To use: On startup the only enabled button will be the "Set World Folder" button. Upon clicking it a file browser will open.
-Set the world folder to the following path: (Your Steam Folder)\userdata\(9-digit number (can be different between devices)\582010\remote
+Set the world folder to the following path: (Your Steam Folder)\userdata\(9-digit number (can be different between devices)\582010\remote  
 After doing this, you will have access to all of the program's features.
 
 ## Buttons
