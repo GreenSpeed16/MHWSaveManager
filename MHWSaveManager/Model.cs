@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using Microsoft.VisualBasic;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace MHWSaveManager
 {
@@ -16,7 +17,7 @@ namespace MHWSaveManager
         public static BinaryFormatter binaryFormatter { get; private set; }
         public List<string> SaveList { get; private set; }
         public bool MainLoaded { get; private set; }
-        string CurrentSavePath;
+        public string CurrentSavePath;
         public string WorldPath { get; private set; }
         public static ProgramState State;
 
@@ -39,7 +40,8 @@ namespace MHWSaveManager
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    SetMain();
+                    File.Delete(".\\MainSave\\MainData");
+                    File.Copy(WorldPath + "\\SAVEDATA1000", ".\\MainSave\\MainData");
                 }
             }
 
@@ -63,6 +65,14 @@ namespace MHWSaveManager
         public void CreateSave(string FilePath)
         {
             File.Copy(WorldPath + "\\SAVEDATA1000", FilePath);
+            CurrentSavePath = FilePath.Replace(".\\Saves\\", "");
+            MainLoaded = false;
+        }
+
+        public void RenameSave(string oldPath, string newPath)
+        {
+            File.Copy(oldPath, newPath);
+            File.Delete(oldPath);
         }
 
         public void LoadMain()
@@ -97,6 +107,7 @@ namespace MHWSaveManager
                     return;
                 }
             }
+
             File.Delete(".\\MainSave\\MainData");
             File.Copy(WorldPath + "\\SAVEDATA1000", ".\\MainSave\\MainData");
         }

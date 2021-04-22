@@ -117,8 +117,25 @@ namespace MHWSaveManager
         private void SaveCurrentSave_Click(object sender, EventArgs e)
         {
             string SaveName = Interaction.InputBox("Enter the name of this save file: ", "Create New Save");
-            Cont.CreateSave(SaveName);
-            Cont.ListSaves();
+            if(SaveName != "")
+            {
+                Cont.CreateSave(SaveName);
+                CurrentSaveLabel.Text = SaveName;
+                MainLoaded(false);
+                Cont.ListSaves();
+            }
+            
+        }
+
+        private void RenameButton_Click(object sender, EventArgs e)
+        {
+            string SaveToRename = SaveBox.SelectedItem.ToString();
+            string SaveName = Interaction.InputBox("Enter the name of this save file: ", "Create New Save");
+            if(SaveName != "")
+            {
+                Cont.RenameSave(SaveToRename, SaveName);
+                Cont.ListSaves();
+            }
         }
     }
 }
