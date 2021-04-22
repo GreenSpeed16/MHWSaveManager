@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace MHWSaveManager
@@ -24,6 +26,10 @@ namespace MHWSaveManager
             else
             {
                 __View.EnableButtons(true);
+                if(__Model.CurrentSavePath == "Main")
+                {
+                    __View.MainLoaded(true);
+                }
             }
         }
 
@@ -69,7 +75,18 @@ namespace MHWSaveManager
 
         public void CreateSave(string FileName)
         {
+            string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+            Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
+            FileName = r.Replace(FileName, "");
             __Model.CreateSave(".\\Saves\\" + FileName);
+        }
+
+        public void RenameSave(string oldName, string newName)
+        {
+            string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+            Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
+            newName = r.Replace(newName, "");
+            __Model.RenameSave(".\\Saves\\" + oldName, ".\\Saves\\" + newName);
         }
     }
 }
