@@ -49,11 +49,11 @@ namespace MHWSaveManager
         {
         }
 
-        public void Save(string WorldPath, string CurrentSavePath, List<string> SaveList, bool MainLoaded)
+        public void Save(string WorldPath, string CurrentSavePath, bool MainLoaded)
         {
             this.WorldPath = WorldPath;
             this.CurrentSavePath = CurrentSavePath;
-            this.SaveList = SaveList;
+            SaveList = Model.SaveList;
             this.MainLoaded = MainLoaded;
         }
     }

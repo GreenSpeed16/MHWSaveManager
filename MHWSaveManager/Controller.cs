@@ -78,15 +78,16 @@ namespace MHWSaveManager
             string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
             Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
             FileName = r.Replace(FileName, "");
-            __Model.CreateSave(".\\Saves\\" + FileName);
+            __Model.CreateSave(FileName);
         }
 
         public void RenameSave(string oldName, string newName)
         {
             string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
             Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
-            newName = r.Replace(newName, "");
-            __Model.RenameSave(".\\Saves\\" + oldName, ".\\Saves\\" + newName);
+            newName = ".\\Saves\\" + r.Replace(newName, "");
+            oldName = ".\\Saves\\" + oldName;
+            __Model.RenameSave(oldName, newName);
         }
     }
 }
