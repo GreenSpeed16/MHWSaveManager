@@ -15,7 +15,7 @@ namespace MHWSaveManager
     public class Model
     {
         public static BinaryFormatter binaryFormatter { get; private set; }
-        public List<string> SaveList { get; private set; }
+        public static List<string> SaveList { get; private set; }
         public bool MainLoaded { get; private set; }
         public string CurrentSavePath;
         public string WorldPath { get; private set; }
@@ -54,7 +54,7 @@ namespace MHWSaveManager
         public void Save()
         {
             //Pass data to CurrentState
-            State.Save(WorldPath, CurrentSavePath, SaveList, MainLoaded);
+            State.Save(WorldPath, CurrentSavePath, MainLoaded);
             //Save to file
             using (Stream output = File.Create("program.state"))
             {
@@ -64,9 +64,26 @@ namespace MHWSaveManager
 
         public void CreateSave(string FilePath)
         {
-            File.Copy(WorldPath + "\\SAVEDATA1000", FilePath);
-            CurrentSavePath = FilePath.Replace(".\\Saves\\", "");
-            MainLoaded = false;
+            if (!SaveList.Contains(FilePath))
+            {
+                File.Copy(WorldPath + "\\SAVEDATA1000", ".\\Saves\\" + FilePath);
+                CurrentSavePath = FilePath.Replace(".\\Saves\\", "");
+                MainLoaded = false;
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("A save with that name already exists. Would you like to replace it?", "Save Already Exists",
+                    MessageBoxButtons.YesNo);
+                if(result == DialogResult.Yes)
+                {
+                    File.Delete(".\\Saves\\" + FilePath);
+                    File.Copy(WorldPath + "\\SAVEDATA1000", ".\\Saves\\" + FilePath);
+                    CurrentSavePath = FilePath.Replace(".\\Saves\\", "");
+                    MainLoaded = false;
+                }
+            }
+                
+            
         }
 
         public void RenameSave(string oldPath, string newPath)
