@@ -27,10 +27,10 @@ namespace MHWSaveManager
             CurrentSaveLabel.Text = Cont.GetSave();
         }
 
-        public void ListSaves(List<string> SaveList)
+        public void ListSaves()
         {
             SaveBox.Items.Clear();
-            foreach(string Save in SaveList)
+            foreach(string Save in Model.SaveList)
             {
                 SaveBox.Items.Add(Save);
             }
@@ -136,6 +136,32 @@ namespace MHWSaveManager
                 Cont.RenameSave(SaveToRename, SaveName);
                 Cont.ListSaves();
             }
+        }
+
+        private void SaveBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            upButton.Enabled = (SaveBox.SelectedIndex > 0);
+            downButton.Enabled = (SaveBox.SelectedIndex < SaveBox.Items.Count -1);
+        }
+
+        private void upButton_Click(object sender, EventArgs e)
+        {
+            int index = SaveBox.SelectedIndex;
+            object item = SaveBox.SelectedItem;
+            SaveBox.Items.RemoveAt(SaveBox.SelectedIndex);
+            SaveBox.Items.Insert(index - 1, item);
+            SaveBox.SelectedIndex = index - 1;
+            Cont.ReorderSaves(SaveBox.Items.Cast<String>().ToList());
+        }
+
+        private void downButton_Click(object sender, EventArgs e)
+        {
+            int index = SaveBox.SelectedIndex;
+            object item = SaveBox.SelectedItem;
+            SaveBox.Items.RemoveAt(SaveBox.SelectedIndex);
+            SaveBox.Items.Insert(index + 1, item);
+            SaveBox.SelectedIndex = index + 1;
+            Cont.ReorderSaves(SaveBox.Items.Cast<String>().ToList());
         }
     }
 }
