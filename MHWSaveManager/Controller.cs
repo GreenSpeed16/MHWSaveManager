@@ -70,7 +70,7 @@ namespace MHWSaveManager
 
         public void ListSaves()
         {
-            __View.ListSaves(__Model.ListSaves());
+            __View.ListSaves();
         }
 
         public void CreateSave(string FileName)
@@ -88,6 +88,11 @@ namespace MHWSaveManager
             newName = ".\\Saves\\" + r.Replace(newName, "");
             oldName = ".\\Saves\\" + oldName;
             __Model.RenameSave(oldName, newName);
+        }
+
+        public void ReorderSaves(List<string> saveList)
+        {
+            __Model.ReorderSaves(saveList);
         }
     }
 }

@@ -82,7 +82,6 @@ namespace MHWSaveManager
                     MainLoaded = false;
                 }
             }
-                
             
         }
 
@@ -144,17 +143,13 @@ namespace MHWSaveManager
             
         }
 
+        public void ReorderSaves(List<string> saveList)
+        {
+            SaveList = saveList;
+        }
+
         public List<string> ListSaves()
         {
-            SaveList.Clear();
-            DirectoryInfo d = new DirectoryInfo(".\\Saves\\");
-            FileInfo[] files = d.GetFiles();
-
-            foreach (FileInfo file in files)
-            {
-                SaveList.Add(file.Name);
-            }
-
             return SaveList;
         }
     }

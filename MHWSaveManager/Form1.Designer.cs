@@ -41,8 +41,10 @@ namespace MHWSaveManager
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.RenameButton = new System.Windows.Forms.Button();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.upButton = new System.Windows.Forms.Button();
+            this.downButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -63,9 +65,9 @@ namespace MHWSaveManager
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(20, 277);
+            this.DeleteButton.Location = new System.Drawing.Point(129, 190);
             this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(103, 39);
+            this.DeleteButton.Size = new System.Drawing.Size(110, 39);
             this.DeleteButton.TabIndex = 17;
             this.DeleteButton.Text = "Delete Selected Save";
             this.DeleteButton.UseVisualStyleBackColor = true;
@@ -112,9 +114,9 @@ namespace MHWSaveManager
             // 
             // LoadButton
             // 
-            this.LoadButton.Location = new System.Drawing.Point(20, 185);
+            this.LoadButton.Location = new System.Drawing.Point(129, 100);
             this.LoadButton.Name = "LoadButton";
-            this.LoadButton.Size = new System.Drawing.Size(103, 39);
+            this.LoadButton.Size = new System.Drawing.Size(110, 39);
             this.LoadButton.TabIndex = 16;
             this.LoadButton.Text = "Load Selected Save";
             this.LoadButton.UseVisualStyleBackColor = true;
@@ -125,8 +127,9 @@ namespace MHWSaveManager
             this.SaveBox.FormattingEnabled = true;
             this.SaveBox.Location = new System.Drawing.Point(20, 19);
             this.SaveBox.Name = "SaveBox";
-            this.SaveBox.Size = new System.Drawing.Size(103, 160);
+            this.SaveBox.Size = new System.Drawing.Size(103, 212);
             this.SaveBox.TabIndex = 11;
+            this.SaveBox.SelectedIndexChanged += new System.EventHandler(this.SaveBox_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -150,32 +153,54 @@ namespace MHWSaveManager
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.downButton);
+            this.groupBox2.Controls.Add(this.upButton);
             this.groupBox2.Controls.Add(this.RenameButton);
             this.groupBox2.Controls.Add(this.SaveBox);
             this.groupBox2.Controls.Add(this.LoadButton);
             this.groupBox2.Controls.Add(this.DeleteButton);
-            this.groupBox2.Location = new System.Drawing.Point(465, 12);
+            this.groupBox2.Location = new System.Drawing.Point(444, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(140, 331);
+            this.groupBox2.Size = new System.Drawing.Size(245, 237);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Backups";
             // 
             // RenameButton
             // 
-            this.RenameButton.Location = new System.Drawing.Point(20, 230);
+            this.RenameButton.Location = new System.Drawing.Point(129, 145);
             this.RenameButton.Name = "RenameButton";
-            this.RenameButton.Size = new System.Drawing.Size(103, 39);
+            this.RenameButton.Size = new System.Drawing.Size(110, 39);
             this.RenameButton.TabIndex = 18;
             this.RenameButton.Text = "Rename Selected Save";
             this.RenameButton.UseVisualStyleBackColor = true;
             this.RenameButton.Click += new System.EventHandler(this.RenameButton_Click);
             // 
+            // upButton
+            // 
+            this.upButton.Location = new System.Drawing.Point(129, 28);
+            this.upButton.Name = "upButton";
+            this.upButton.Size = new System.Drawing.Size(110, 24);
+            this.upButton.TabIndex = 19;
+            this.upButton.Text = "Move Up";
+            this.upButton.UseVisualStyleBackColor = true;
+            this.upButton.Click += new System.EventHandler(this.upButton_Click);
+            // 
+            // downButton
+            // 
+            this.downButton.Location = new System.Drawing.Point(129, 64);
+            this.downButton.Name = "downButton";
+            this.downButton.Size = new System.Drawing.Size(110, 24);
+            this.downButton.TabIndex = 20;
+            this.downButton.Text = "Move Down";
+            this.downButton.UseVisualStyleBackColor = true;
+            this.downButton.Click += new System.EventHandler(this.downButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 374);
+            this.ClientSize = new System.Drawing.Size(698, 374);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.SetWorldPath);
             this.Controls.Add(this.groupBox1);
@@ -207,6 +232,8 @@ namespace MHWSaveManager
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Button RenameButton;
+        private System.Windows.Forms.Button upButton;
+        private System.Windows.Forms.Button downButton;
     }
 }
 
