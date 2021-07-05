@@ -85,9 +85,8 @@ namespace MHWSaveManager
         {
             string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
             Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
-            newName = ".\\Saves\\" + r.Replace(newName, "");
-            oldName = ".\\Saves\\" + oldName;
-            __Model.RenameSave(oldName, newName);
+            
+            __Model.RenameSave(oldName, r.Replace(newName, ""));
         }
 
         public void ReorderSaves(List<string> saveList)

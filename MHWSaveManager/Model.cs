@@ -69,6 +69,7 @@ namespace MHWSaveManager
                 File.Copy(WorldPath + "\\SAVEDATA1000", ".\\Saves\\" + FilePath);
                 CurrentSavePath = FilePath.Replace(".\\Saves\\", "");
                 MainLoaded = false;
+                SaveList.Add(FilePath);
             }
             else
             {
@@ -80,6 +81,7 @@ namespace MHWSaveManager
                     File.Copy(WorldPath + "\\SAVEDATA1000", ".\\Saves\\" + FilePath);
                     CurrentSavePath = FilePath.Replace(".\\Saves\\", "");
                     MainLoaded = false;
+                    SaveList.Add(FilePath);
                 }
             }
             
@@ -87,6 +89,11 @@ namespace MHWSaveManager
 
         public void RenameSave(string oldPath, string newPath)
         {
+            SaveList.Remove(oldPath);
+            SaveList.Add(newPath);
+
+            newPath = ".\\Saves\\" + newPath;
+            oldPath = ".\\Saves\\" + oldPath;
             File.Copy(oldPath, newPath);
             File.Delete(oldPath);
         }
@@ -139,6 +146,7 @@ namespace MHWSaveManager
             if(dialogResult == DialogResult.Yes)
             {
                 File.Delete(".\\Saves\\" + FileName);
+                SaveList.Remove(FileName);
             }
             
         }
