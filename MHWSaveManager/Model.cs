@@ -81,7 +81,6 @@ namespace MHWSaveManager
                     File.Copy(WorldPath + "\\SAVEDATA1000", ".\\Saves\\" + FilePath);
                     CurrentSavePath = FilePath.Replace(".\\Saves\\", "");
                     MainLoaded = false;
-                    SaveList.Add(FilePath);
                 }
             }
             
