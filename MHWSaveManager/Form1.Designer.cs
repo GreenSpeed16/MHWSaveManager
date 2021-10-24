@@ -35,16 +35,16 @@ namespace MHWSaveManager
             this.CurrentSaveLabel = new System.Windows.Forms.Label();
             this.SetMainButton = new System.Windows.Forms.Button();
             this.MainSaveButton = new System.Windows.Forms.Button();
-            this.SetWorldPath = new System.Windows.Forms.Button();
             this.LoadButton = new System.Windows.Forms.Button();
             this.SaveBox = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.downButton = new System.Windows.Forms.Button();
+            this.upButton = new System.Windows.Forms.Button();
             this.RenameButton = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.upButton = new System.Windows.Forms.Button();
-            this.downButton = new System.Windows.Forms.Button();
+            this.SetWorldPath = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -102,16 +102,6 @@ namespace MHWSaveManager
             this.MainSaveButton.UseVisualStyleBackColor = true;
             this.MainSaveButton.Click += new System.EventHandler(this.MainSaveButton_Click);
             // 
-            // SetWorldPath
-            // 
-            this.SetWorldPath.Location = new System.Drawing.Point(250, 12);
-            this.SetWorldPath.Name = "SetWorldPath";
-            this.SetWorldPath.Size = new System.Drawing.Size(109, 23);
-            this.SetWorldPath.TabIndex = 20;
-            this.SetWorldPath.Text = "Set World Folder";
-            this.SetWorldPath.UseVisualStyleBackColor = true;
-            this.SetWorldPath.Click += new System.EventHandler(this.SetWorldPath_Click);
-            // 
             // LoadButton
             // 
             this.LoadButton.Location = new System.Drawing.Point(129, 100);
@@ -166,15 +156,15 @@ namespace MHWSaveManager
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Backups";
             // 
-            // RenameButton
+            // downButton
             // 
-            this.RenameButton.Location = new System.Drawing.Point(129, 145);
-            this.RenameButton.Name = "RenameButton";
-            this.RenameButton.Size = new System.Drawing.Size(110, 39);
-            this.RenameButton.TabIndex = 18;
-            this.RenameButton.Text = "Rename Selected Save";
-            this.RenameButton.UseVisualStyleBackColor = true;
-            this.RenameButton.Click += new System.EventHandler(this.RenameButton_Click);
+            this.downButton.Location = new System.Drawing.Point(129, 64);
+            this.downButton.Name = "downButton";
+            this.downButton.Size = new System.Drawing.Size(110, 24);
+            this.downButton.TabIndex = 20;
+            this.downButton.Text = "Move Down";
+            this.downButton.UseVisualStyleBackColor = true;
+            this.downButton.Click += new System.EventHandler(this.downButton_Click);
             // 
             // upButton
             // 
@@ -186,15 +176,25 @@ namespace MHWSaveManager
             this.upButton.UseVisualStyleBackColor = true;
             this.upButton.Click += new System.EventHandler(this.upButton_Click);
             // 
-            // downButton
+            // RenameButton
             // 
-            this.downButton.Location = new System.Drawing.Point(129, 64);
-            this.downButton.Name = "downButton";
-            this.downButton.Size = new System.Drawing.Size(110, 24);
-            this.downButton.TabIndex = 20;
-            this.downButton.Text = "Move Down";
-            this.downButton.UseVisualStyleBackColor = true;
-            this.downButton.Click += new System.EventHandler(this.downButton_Click);
+            this.RenameButton.Location = new System.Drawing.Point(129, 145);
+            this.RenameButton.Name = "RenameButton";
+            this.RenameButton.Size = new System.Drawing.Size(110, 39);
+            this.RenameButton.TabIndex = 18;
+            this.RenameButton.Text = "Rename Selected Save";
+            this.RenameButton.UseVisualStyleBackColor = true;
+            this.RenameButton.Click += new System.EventHandler(this.RenameButton_Click);
+            // 
+            // SetWorldPath
+            // 
+            this.SetWorldPath.Location = new System.Drawing.Point(250, 12);
+            this.SetWorldPath.Name = "SetWorldPath";
+            this.SetWorldPath.Size = new System.Drawing.Size(109, 23);
+            this.SetWorldPath.TabIndex = 20;
+            this.SetWorldPath.Text = "Set World Folder";
+            this.SetWorldPath.UseVisualStyleBackColor = true;
+            this.SetWorldPath.Click += new System.EventHandler(this.SetWorldPath_Click);
             // 
             // Form1
             // 
@@ -224,7 +224,6 @@ namespace MHWSaveManager
         private System.Windows.Forms.Label CurrentSaveLabel;
         private System.Windows.Forms.Button SetMainButton;
         private System.Windows.Forms.Button MainSaveButton;
-        private System.Windows.Forms.Button SetWorldPath;
         private System.Windows.Forms.Button LoadButton;
         private System.Windows.Forms.ListBox SaveBox;
         private System.Windows.Forms.Label label2;
@@ -234,6 +233,7 @@ namespace MHWSaveManager
         private System.Windows.Forms.Button RenameButton;
         private System.Windows.Forms.Button upButton;
         private System.Windows.Forms.Button downButton;
+        private System.Windows.Forms.Button SetWorldPath;
     }
 }
 
