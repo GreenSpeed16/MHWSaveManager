@@ -21,6 +21,7 @@ namespace MHWSaveManager
             Model m = new Model();
             Controller c = new Controller(v, m);
             v.SetController(c);
+            v.SetSavePath();
             c.ListSaves();
             Application.Run(v);
         }

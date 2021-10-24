@@ -9,6 +9,7 @@ using System.Diagnostics;
 using Microsoft.VisualBasic;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using Microsoft.Win32;
 
 namespace MHWSaveManager
 {
@@ -18,7 +19,7 @@ namespace MHWSaveManager
         public static List<string> SaveList { get; private set; }
         public bool MainLoaded { get; private set; }
         public string CurrentSavePath;
-        public string WorldPath { get; private set; }
+        public static string WorldPath { get; set; }
         public static ProgramState State;
 
         public Model()
@@ -112,9 +113,39 @@ namespace MHWSaveManager
             }
         }
 
-        public void SetWorldFolder(string Path)
+        public bool SetWorldFolder()
         {
-            WorldPath = Path;
+            object steamPath = Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Valve\\Steam", "InstallPath", null);
+            string[] userdataFolder = Directory.GetDirectories(steamPath.ToString() + "\\userdata");
+            bool storiesFolderExists = false;
+            foreach (string folder in userdataFolder)
+            {
+                Console.WriteLine(folder);
+                Console.WriteLine(folder.Substring(folder.LastIndexOf("\\") + 1));
+                if (Regex.IsMatch(folder.Substring(folder.LastIndexOf("\\") + 1), "^[0-9]"))
+                //Folder is the Id folder
+                {
+                    foreach (string subFolder in Directory.GetDirectories(folder))
+                    {
+                        if (subFolder.Substring(subFolder.LastIndexOf("\\") + 1) == "582010")
+                        {
+                            WorldPath = folder + "\\582010\\remote";
+                            return true;
+                        }
+                    }
+                    if (!storiesFolderExists)
+                    {
+                        string tempPath = Interaction.InputBox("MHW folder not found. Please type the path here: ");
+                        if(WorldPath != "")
+                        {
+                            WorldPath = tempPath;
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            }
+            return false;
         }
 
         public void SetMain()

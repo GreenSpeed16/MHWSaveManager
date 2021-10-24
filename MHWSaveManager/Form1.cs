@@ -18,6 +18,10 @@ namespace MHWSaveManager
         public Form1()
         {
             InitializeComponent();
+            if(Model.WorldPath != "")
+            {
+                SetWorldPath.Text = "Change World Path";
+            }
             
         }
 
@@ -50,17 +54,23 @@ namespace MHWSaveManager
             MainSaveButton.Enabled = WorldPathSet;
         }
 
+        public void SetSavePath()
+        {
+            if (Cont.SetWorldPath())
+            {
+                Cont.SetMain();
+                Cont.LoadMain();
+                CurrentSaveLabel.Text = "Main";
+                EnableButtons(true);
+                MainLoaded(true);
+                SetWorldPath.Text = "Change World Path";
+            }
+        }
+
         private void SetWorldPath_Click(object sender, EventArgs e)
         {
-            if(folderBrowserDialog1.ShowDialog() == DialogResult.OK)
-            {
-                Cont.SetWorldPath(folderBrowserDialog1.SelectedPath);
-            }
-            Cont.SetMain();
-            Cont.LoadMain();
-            CurrentSaveLabel.Text = "Main";
-            EnableButtons(true);
-            MainLoaded(true);
+            string WorldPath = Interaction.InputBox("Please type the MHW path here: \n (Steam\\userdata\\<9-digit number>\\582010\\remote)");
+            Model.WorldPath = WorldPath;
         }
 
         private void MainSaveButton_Click(object sender, EventArgs e)

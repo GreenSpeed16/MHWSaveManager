@@ -19,7 +19,7 @@ namespace MHWSaveManager
             this.__Model = Model;
 
             __View.MainLoaded(__Model.MainLoaded);
-            if(__Model.WorldPath == null)
+            if(Model.WorldPath == null)
             {
                 __View.EnableButtons(false);
             }
@@ -33,9 +33,13 @@ namespace MHWSaveManager
             }
         }
 
-        public void SetWorldPath(string Path)
+        public bool SetWorldPath()
         {
-            __Model.SetWorldFolder(Path);
+            if (Model.WorldPath == null)
+            {
+                return __Model.SetWorldFolder();
+            }
+            return false;
         }
 
         public void Save()
